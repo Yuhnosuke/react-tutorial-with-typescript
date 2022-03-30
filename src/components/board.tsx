@@ -3,11 +3,11 @@ import React from 'react'
 
 class Board extends React.Component {
   renderSquare(i: number) {
-    return <Square />
+    return <Square value={i} />
   }
 
   render() {
-    const status = 'Next player: X'
+    const status: string = 'Next player: X'
 
     return (
       <div>
