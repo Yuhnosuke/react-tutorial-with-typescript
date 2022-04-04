@@ -1,10 +1,33 @@
 import Square from './square'
 import React from 'react'
 
-class Board extends React.Component {
-  renderSquare(i: number) {
-    return <Square value={i} />
+interface Props {
+
+}
+
+interface State {
+  squares: ('X' | 'O' | null)[]
+}
+
+class Board extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props)
+    this.state = {
+      squares: Array(9).fill(null)
+    }
   }
+  handleClick(i: number) {
+    const squares = this.state.squares.slice()
+    squares[i] = 'X'
+    this.setState({squares: squares})
+  }
+
+  renderSquare(i: number) {
+    return <Square
+            value={this.state.squares[i]}
+            onClick={() => this.handleClick(i)}
+          />
+    }
 
   render() {
     const status: string = 'Next player: X'
